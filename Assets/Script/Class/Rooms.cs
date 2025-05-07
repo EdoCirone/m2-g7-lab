@@ -15,7 +15,7 @@ public class Rooms
 
     private void AssegnoTipoStanza()
     {
-        tipo =  (TIPODISTANZA)  Random.Range(0,3);
+        tipo =  (TIPODISTANZA)  Random.Range(0,4);
 
         switch (tipo)
         {
@@ -27,13 +27,14 @@ public class Rooms
                 TIPODINEMICO tiponemico = enemy.tipo;
 
                 Debug.Log("Hai trovato un " + tiponemico);
-                player.movimento = MOVIMENTO.STAI;
+                player.Combattimento();
+                player.GetMovimento();
                 break;
 
             case TIPODISTANZA.STANZATRAPPOLA:
 
                 Debug.Log("hai trovato una trappola");
-                player.movimento = MOVIMENTO.STAI;
+                player.GetMovimento();
 
                 break;
 
@@ -41,7 +42,7 @@ public class Rooms
             case TIPODISTANZA.STANZAVUOTA:
 
                 Debug.Log("hai trovato una stanza vuota");
-                player.movimento = MOVIMENTO.STAI;
+                player.GetMovimento();
 
                 break;
 
@@ -49,7 +50,7 @@ public class Rooms
             case TIPODISTANZA.STANZATESORO:
 
                 Debug.Log("hai trovato un tesoro");
-                player.movimento = MOVIMENTO.STAI;
+                player.GetMovimento();
 
                 break;
 
@@ -67,7 +68,7 @@ public class Rooms
 
         enemy.SetEnemy();
 
-        Debug.Log(" Nuovo nemico: " + enemy.tipo + " con " + enemy.life + " HP");
+        Debug.Log(" Nuovo nemico: " + enemy.tipo + " con " + enemy.vita + " HP");
 
         return enemy;
     }

@@ -25,18 +25,28 @@ public class MyMonoscript : MonoBehaviour
     {
         player = new Player();
         player.Name = playername;
-        player.movimento = MOVIMENTO.STAI;
+        player.GetMovimento();
         room = new Rooms();
         room.player = player;
 
-        player.movimento = movimento; // Sincronizza con Inspector
-        player.action = action;       // Idem per azione
+ 
     }
 
     // Update is called once per frame
     void Update()
     {
-         if (!player.vittoria() && !player.sconfitta())
+     
+    
+
+ 
+
+    player.movimentoesposto = movimento; // Sincronizza con Inspector
+        movimento = MOVIMENTO.STAI;
+        player.action = action;       // Idem per azione
+
+
+
+        if (!player.vittoria() && !player.sconfitta())
 
         {
 
@@ -46,11 +56,11 @@ public class MyMonoscript : MonoBehaviour
             if (player.SièMosso())
             {
                 room.CreoStanza();
-                player.movimento = MOVIMENTO.STAI;
+                player.GetMovimento();
                 //stanzaCreata = true;
             }
 
-            player.EntrataInCombattimento();  
+            player.Combattimento();  
 
         }
         else

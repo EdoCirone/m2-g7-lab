@@ -7,11 +7,11 @@ public class Enemy
 {
     public TIPODINEMICO tipo;
 
-    public int life;
+    public int vita;
 
     private int expvalue;
 
-    private int precisione;
+    public int precisione;
 
     public int schivata;
 
@@ -34,8 +34,8 @@ public class Enemy
     public bool Damaged(Player player)
     {
 
-            life -= player.GetAttack();
-            Debug.Log("Ho subito " + player.GetAttack() + " ora la mia vita è " + life);
+            vita -= player.GetAttack();
+            Debug.Log("Ho subito " + player.GetAttack() + " ora la mia vita è " + vita);
 
         return DeathCheck();
     }
@@ -48,7 +48,7 @@ public class Enemy
         switch (tipo)
         {
             case TIPODINEMICO.DEBOLE:
-                life = 5;
+                vita = 5;
                 precisione = 3;
                 attack = 1;
                 agility = 1;
@@ -57,7 +57,7 @@ public class Enemy
                 break;
 
             case TIPODINEMICO.MEDIO:
-                life = 10;
+                vita = 10;
                 precisione = 6;
                 attack = 2;
                 agility = 2;
@@ -66,7 +66,7 @@ public class Enemy
                 break;
 
             case TIPODINEMICO.FORTE:
-                life = 15;
+                vita = 15;
                 precisione = 9;
                 attack = 3;
                 agility = 3;
@@ -76,38 +76,25 @@ public class Enemy
 
         }
 
-        Debug.Log(tipo + " la mia vita è " + life + " la mia precisione è " + precisione + " il mio attacco è " + attack);
+        Debug.Log(tipo + " la mia vita è " + vita + " la mia precisione è " + precisione + " il mio attacco è " + attack);
         return tipo;
     }
 
     public void AttaccoNemico(Player player)
     {
         Debug.Log("il nemico si prepara ad attaccare");
-        agility = player.GetAgility();
-        
-        if (precisione < agility)
-        {
-            int vita = player.GetVita();
-            vita -= attack;
-
-            Debug.Log("Il nemico ti ha colpito infliggendoti " + attack + "danni");
-            Debug.Log("Ora la tua vita è: " + vita);
-        }
-        else
-        {
-            Debug.Log("hai schivato il colpo!");
-        }
     }
+
 
     public bool DeathCheck()
     {
-        if (life > 0)
+        if (vita > 0)
         {
             morto = false;
         }
-        else if (life < 0)
+        else if (vita < 0)
         {
-            life = 0;
+            vita = 0;
             morto = true;
         }
         else

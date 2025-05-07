@@ -19,13 +19,14 @@ public class Player
     private int vita = 100;
 
     public ACTION action;
-    public MOVIMENTO movimento;
+    private MOVIMENTO movimento;
+    public MOVIMENTO movimentoesposto;
     MOVIMENTO movimentoprecedente = MOVIMENTO.STAI;
 
     public Enemy enemy;
     public Rooms rooms;
 
-    
+
 
     //FUNZIONI
 
@@ -44,7 +45,7 @@ public class Player
             return false;
         }
     }
-    public bool EntrataInCombattimento()
+    public bool Combattimento()
     {
         if (enemy == null || enemy.morto)
         {
@@ -58,15 +59,17 @@ public class Player
                     action = ACTION.FERMO;
                 }
 
+                enemy = null;
+
 
             }
 
-            if (movimento != MOVIMENTO.STAI)
-            {
+            /*  if (movimento != MOVIMENTO.STAI)
+              {
 
-                movimento = MOVIMENTO.STAI;
+                  movimento = MOVIMENTO.STAI;
 
-            }
+              }*/
 
             return false;
         }
@@ -78,7 +81,7 @@ public class Player
             if (movimento != MOVIMENTO.STAI)
             {
                 Debug.Log("Non puoi muoverti finchè c'è un nemico");
-                movimento = MOVIMENTO.STAI;
+                // movimento = MOVIMENTO.STAI;
             }
 
             FunzioneAttack();
@@ -162,6 +165,40 @@ public class Player
         enemy = null;
     }
 
+    public MOVIMENTO GetMovimento()
+    {
+        if (enemy != null && !enemy.morto)
+        {
+            movimento = MOVIMENTO.STAI;
+            Debug.Log("il nemico non c'è o è morto");
+        }
+        else
+        {
+            movimento = movimentoesposto;
+            Debug.Log("ecco il nemico");
+        }
+
+        return movimento;
+
+    }
+
+    public void ColpiscoIlNemico()
+    {
+
+        if (enemy.precisione < agility)
+        {
+            enemy.vita -= attack;
+
+            Debug.Log("Il nemico ti ha colpito infliggendoti " + attack + "danni");
+            Debug.Log("Ora la tua vita è: " + vita);
+        }
+        else
+        {
+        }
+
+        Debug.Log("hai schivato il colpo!");
+
+    }
 
 
     public bool CheckMorte()
