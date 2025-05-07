@@ -1,4 +1,5 @@
 
+using UnityEditor.Media;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
@@ -20,12 +21,13 @@ public class Enemy
 
     public bool morto;
 
-    Player player;
+    public Player player;
+    public Rooms rooms;
 
-    public void SetEnemy(Player player)
+    public void SetEnemy()
     {
        
-        tipo = TypeEnemy(out life, out precisione, out attack, out agility, out schivata, out expvalue);
+        tipo = TypeEnemy();
     }
 
 
@@ -38,15 +40,9 @@ public class Enemy
         return DeathCheck();
     }
 
-    private TIPODINEMICO TypeEnemy(out int life, out int precisione, out int attack, out int agility, out int schivata, out int expvalue)
+    private TIPODINEMICO TypeEnemy()
     {
-        life = 0;
-        precisione = 0;
-        attack = 0;
-        agility = 0;
-        schivata = 0;
-        expvalue = 0;
-
+      
         TIPODINEMICO tipo = (TIPODINEMICO)Random.Range(0, 0);
 
         switch (tipo)
@@ -87,13 +83,15 @@ public class Enemy
     public void AttaccoNemico(Player player)
     {
         Debug.Log("il nemico si prepara ad attaccare");
+        agility = player.GetAgility();
         
-        if (precisione < player.agility)
+        if (precisione < agility)
         {
-            player.vita -= attack;
+            int vita = player.GetVita();
+            vita -= attack;
 
             Debug.Log("Il nemico ti ha colpito infliggendoti " + attack + "danni");
-            Debug.Log("Ora la tua vita è: " + player.vita);
+            Debug.Log("Ora la tua vita è: " + vita);
         }
         else
         {

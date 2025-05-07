@@ -1,31 +1,174 @@
 using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+[SerializeField]
 
 public class Player
 {
 
+    //FIELDS
 
     public string Name;
-    public int experience;
-    public int agility = 5;
+    private int experience;
+    private int agility = 5;
 
     private int attack = 5;
     private bool morto;
-    private int precision = 1;
-    public int livello;
-    public int vita = 100;
+    private int precisione = 1;
+    private int livello;
+    private int vita = 100;
 
-    public ACTION action = new ACTION();
-    public MOVIMENTO movimento = new MOVIMENTO();
+    public ACTION action;
+    public MOVIMENTO movimento;
+    MOVIMENTO movimentoprecedente = MOVIMENTO.STAI;
 
-    public bool incombattimento;
+    public Enemy enemy;
+    public Rooms rooms;
+
+    
+
+    //FUNZIONI
+
+    public bool SièMosso()
+    {
+        //creo un confronto per capire se si è mosso, mettendo a confronto il dato stai con la variabile movimento
+
+        if (movimento != movimentoprecedente && movimento != MOVIMENTO.STAI)
+        {
+            movimentoprecedente = movimento;
+            return true;
+        }
+        else
+        {
+            movimentoprecedente = movimento;
+            return false;
+        }
+    }
+    public bool EntrataInCombattimento()
+    {
+        if (enemy == null || enemy.morto)
+        {
+            if (enemy != null && enemy.morto)
+            {
+                AcquistoPuntiEsperienza();
+
+                if (action != ACTION.FERMO)
+                {
+                    Debug.Log("Sei fuori dalla modalità combattimento!");
+                    action = ACTION.FERMO;
+                }
+
+
+            }
+
+            if (movimento != MOVIMENTO.STAI)
+            {
+
+                movimento = MOVIMENTO.STAI;
+
+            }
+
+            return false;
+        }
+
+        else
+        {
+
+            //player.action = action;
+            if (movimento != MOVIMENTO.STAI)
+            {
+                Debug.Log("Non puoi muoverti finchè c'è un nemico");
+                movimento = MOVIMENTO.STAI;
+            }
+
+            FunzioneAttack();
+
+            return true;
+
+        }
+    }
+    public void FunzioneAttack()
+    {
+
+        if (enemy.morto == false)
+        {
+
+            ACTION azione = action;
+
+
+            switch (azione)
+            {
+                case (ACTION.ATTACCA):
+                    int schivata = enemy.schivata + Random.Range(0, 10);
+                    int newprecisione = precisione + Random.Range(1, 10);
+                    if (schivata < newprecisione)
+                    {
+                        enemy.morto = enemy.Damaged(this);
+                        if (!enemy.morto)
+                        {
+                            enemy.AttaccoNemico(this);
+                        }
+
+                    }
+                    else
+                    {
+                        Debug.Log("Hai Lisciato il Nemico!");
+                        enemy.AttaccoNemico(this);
+                    }
+                    action = ACTION.FERMO;
+
+                    break;
+
+
+                case (ACTION.FUGGI):
+
+                    if (agility >= enemy.agility)
+                    {
+                        Debug.Log("Sei Scappato");
+                        enemy = null;
+                    }
+                    else
+                    {
+                        Debug.Log("non sei scappato");
+                        enemy.AttaccoNemico(this);
+                    }
+                    action = ACTION.FERMO;
+                    break;
+
+
+                default:
+                    action = ACTION.FERMO;
+                    enemy.morto = enemy.DeathCheck();
+                    break;
+
+            }
+
+
+        }
+        else
+        {
+
+            Debug.Log("sono morto");
+            return;
+        }
+    }
+
+    public void AcquistoPuntiEsperienza()
+    {
+        Debug.Log("complimenti hai guadagnato " + enemy.GetExpValue());
+        experience += enemy.GetExpValue();
+        IncrementaLivello();
+        Debug.Log("Hai Ucciso il nemico! Ora vai avanti!");
+        enemy = null;
+    }
+
+
 
     public bool CheckMorte()
     {
-        if ( vita == 0 )
+        if (vita == 0)
         { return true; }
-        else if ( vita < 0 )
+        else if (vita < 0)
         {
             vita = 0;
             return true;
@@ -35,11 +178,26 @@ public class Player
             return false;
         }
     }
-
-    public int GetPrecision()
+    public bool vittoria()
     {
-        return precision;
+
+        if (livello >= 10)
+        {
+            Debug.Log("Complimenti hai vinto!!!");
+            return true;
+        }
+        return false;
     }
+    public bool sconfitta()
+    {
+        if (CheckMorte())
+        {
+            Debug.Log("mi dispiace sei morto");
+            return true;
+        }
+        return false;
+    }
+
 
     public int GetVita()
     {
@@ -51,7 +209,15 @@ public class Player
         return attack;
     }
 
+    public int GetAgility()
+    {
+        return agility;
+    }
 
+    public int GetExperience()
+    {
+        return experience;
+    }
 
     public void IncrementaLivello()
     {
@@ -59,7 +225,7 @@ public class Player
         {
             livello++;
             attack += 1;
-            precision += 1;
+            precisione += 1;
             agility += 1;
             experience = 0;
             Debug.Log("Complimenti" + Name + "sei salito di livello! ore sei livello " + livello);

@@ -13,8 +13,5 @@ public enum ACTION
 public enum MOVIMENTO
 {
     AVANTI,
-    DESTRA,
-    SINISTRA,
-    INDIETRO,
     STAI
 }
