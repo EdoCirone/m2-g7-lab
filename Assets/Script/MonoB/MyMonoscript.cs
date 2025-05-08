@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using JetBrains.Annotations;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -13,7 +14,7 @@ public class MyMonoscript : MonoBehaviour
     public string playername;
     private Rooms room;
     private Traps trappola;
-
+    private Mappa mappa;
 
     public AZIONICOMBATTIMENTO action;
     public AZIONIMOVIMENTO movimento;
@@ -31,13 +32,12 @@ public class MyMonoscript : MonoBehaviour
         Debug.Log("grazie al prezioso contributo dei docenti Jacopo Ziuliani e Luca Villanini. SI GIOCA TRAMITE INSPECTOR. UN GIOCO PIENO DI AVVENTURA,MISTERO E PARACULAGINE!!!");
         Debug.Log("sebbene il disordine degli script possa far sembrare che il gioco sia stato scritto da un chiwawa con tre zampe vi assicuriamo che siamo esseri umani");
 
-
         player = new Player();
         player.Name = playername;
         player.GetMovimento();
-        room = new Rooms();
-        room.player = player;
+       
         trappola = new Traps();
+        mappa = new Mappa();
 
 
     }
@@ -45,6 +45,8 @@ public class MyMonoscript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
         player.movimentoesposto = movimento;
         player.action = action;
 
@@ -61,15 +63,19 @@ public class MyMonoscript : MonoBehaviour
 
             if (player.SièMosso())
             {
+                room = new Rooms();
+                room.player = player;
 
                 room.CreoStanza();
+                mappa.InseriscoStanzaInMappa(room);
+                mappa.MostraMappa();
 
             }
 
             player.HoPresoLaPozione();
             player.AffrontoLaTrappola();
             player.Combattimento();
-     
+
         }
         else
         {

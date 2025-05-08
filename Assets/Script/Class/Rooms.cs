@@ -6,26 +6,24 @@ using UnityEngine;
 
 public class Rooms
 {
-    public List <TIPODISTANZA> mappa; 
+
     private TIPODISTANZA tipo;
 
     public Inventario inventraio;
     public Player player;
+
     //public Enemy enemy;
 
-List<TIPODISTANZA> mappa = new List<TIPODISTANZA>();
-    public void CreoStanza(string nome, int posizione)
+    public void CreoStanza()
     {
-        TIPODISTANZA nuovastanza = new TIPODISTANZA(nome, posizione);
-        mappa.Add(nuovastanza);
+
         AssegnoTipoStanza();
-        Debug.log ( "è stata aggiunta una nuova stanza: " + nome + posizione);
 
     }
 
     private void AssegnoTipoStanza()
     {
-        tipo =  (TIPODISTANZA)  Random.Range(0,4);
+        tipo = (TIPODISTANZA)Random.Range(0, 4);
 
         switch (tipo)
         {
@@ -76,6 +74,11 @@ List<TIPODISTANZA> mappa = new List<TIPODISTANZA>();
         }
     }
 
+    //private void MettoLaStanzaInMappa()
+    //{
+
+    //}
+
     private Enemy CreoNemico()
     {
 
@@ -114,6 +117,11 @@ List<TIPODISTANZA> mappa = new List<TIPODISTANZA>();
             return tesoro;
 
         }
+    }
+
+    public TIPODISTANZA GetTipo()
+    {
+        return tipo;
     }
 
 }

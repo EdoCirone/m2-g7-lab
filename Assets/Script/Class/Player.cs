@@ -57,8 +57,7 @@ public class Player
 
     public AZIONIMOVIMENTO GetMovimento()
     {
-        if (traps != null)
-        {
+   
             if (enemy != null && !enemy.morto)
             {
                 movimento = AZIONIMOVIMENTO.STAI;
@@ -70,12 +69,6 @@ public class Player
 
             }
 
-            movimento = AZIONIMOVIMENTO.STAI;
-        }
-        else
-        {
-            movimento = movimentoesposto;
-        }
 
             return movimento;
             
@@ -100,10 +93,12 @@ public class Player
         {
             if (inventario.HoLaPozione() == true)
             {
+
                 vita += vita;
                 Debug.Log("Hai preso una pozione ora la tua vita è " + vita);
                
             }
+            
             else
             {
 
