@@ -12,8 +12,11 @@ public enum AZIONICOMBATTIMENTO
 
 public enum AZIONIMOVIMENTO
 {
-    AVANTI,
+    
     STAI,
+    AVANTI,
+    INDIETRO
+
 }
 
 public enum AZIONIINVENTARIO

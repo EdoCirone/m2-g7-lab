@@ -37,7 +37,7 @@ public class Rooms
 
                 Debug.Log("Hai trovato un " + tiponemico);
                 player.Combattimento();
-                player.GetMovimento();
+                player.BloccaMovimento();
                 break;
 
             case TIPODISTANZA.STANZATRAPPOLA:
@@ -45,7 +45,7 @@ public class Rooms
                 Traps traps = CreoTrappola();
                 player.traps = traps;
                 Debug.Log("hai trovato una trappola");
-                player.GetMovimento();
+                player.BloccaMovimento();
                 player.enemy = null;
                 break;
 
@@ -53,7 +53,7 @@ public class Rooms
             case TIPODISTANZA.STANZAVUOTA:
 
                 Debug.Log("hai trovato una stanza vuota");
-                player.GetMovimento();
+                player.BloccaMovimento();
                 player.enemy = null;
                 player.traps = null;
 
@@ -63,7 +63,7 @@ public class Rooms
             case TIPODISTANZA.STANZATESORO:
 
                 Debug.Log("hai trovato un tesoro");
-                player.GetMovimento();
+                player.BloccaMovimento();
                 player.enemy = null;
                 player.traps = null;
 
@@ -73,11 +73,6 @@ public class Rooms
                 break;
         }
     }
-
-    //private void MettoLaStanzaInMappa()
-    //{
-
-    //}
 
     private Enemy CreoNemico()
     {

@@ -34,7 +34,7 @@ public class MyMonoscript : MonoBehaviour
 
         player = new Player();
         player.Name = playername;
-        player.GetMovimento();
+        player.BloccaMovimento();
        
         trappola = new Traps();
         mappa = new Mappa();
@@ -50,7 +50,7 @@ public class MyMonoscript : MonoBehaviour
         player.movimentoesposto = movimento;
         player.action = action;
 
-        player.GetMovimento();
+        player.BloccaMovimento();
 
 
         if (!player.vittoria() && !player.sconfitta())
@@ -58,7 +58,7 @@ public class MyMonoscript : MonoBehaviour
         {
 
 
-            player.GetMovimento();
+            player.BloccaMovimento();
 
 
             if (player.SièMosso())
@@ -72,7 +72,7 @@ public class MyMonoscript : MonoBehaviour
 
             }
 
-            player.HoPresoLaPozione();
+            player.PrendoPozione();
             player.AffrontoLaTrappola();
             player.Combattimento();
 

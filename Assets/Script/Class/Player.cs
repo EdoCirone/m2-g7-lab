@@ -24,7 +24,7 @@ public class Player
     public AZIONIINVENTARIO azioneinventario;
     private AZIONIMOVIMENTO movimento;
     
-    public AZIONIMOVIMENTO movimentoesposto;
+    public AZIONIMOVIMENTO movimentoesposto = AZIONIMOVIMENTO.STAI;
     AZIONIMOVIMENTO movimentoprecedente =  AZIONIMOVIMENTO.STAI;
 
     AZIONIINVENTARIO azioneinventarioprecedente = AZIONIINVENTARIO.NULLA;
@@ -54,8 +54,7 @@ public class Player
             return false;
         }
     }
-
-    public AZIONIMOVIMENTO GetMovimento()
+    public AZIONIMOVIMENTO BloccaMovimento()
     {
    
             if (enemy != null && !enemy.morto)
@@ -74,6 +73,8 @@ public class Player
             
     }
 
+
+
     public bool HoPresoLaPozione()
     {
 
@@ -84,10 +85,8 @@ public class Player
 
         return false;
     }
-
     public void PrendoPozione()
     {
-        HoPresoLaPozione();
 
         if (azioneinventario == AZIONIINVENTARIO.PRENDOPOZIONECURA)
         {
@@ -107,17 +106,12 @@ public class Player
             }
               
 
-            Debug.Log("Non Hai Pozioni");
         }
 
 
     }
 
-    public void DannoTrappola()
-    {
-        vita = vita - traps.Getdannotrappola();
-        Debug.Log("Non hai schivato la trappola!!! hai subito " + traps.Getdannotrappola() + " danni, la tua vita ora è " + vita);
-    }
+
 
     public bool AffrontoLaTrappola()
     {
@@ -145,6 +139,13 @@ public class Player
         //Debug.Log("Nessuna trappola da affrontare.");
          return false;
     }
+    public void DannoTrappola()
+    {
+        vita = vita - traps.Getdannotrappola();
+        Debug.Log("Non hai schivato la trappola!!! hai subito " + traps.Getdannotrappola() + " danni, la tua vita ora è " + vita);
+    }
+
+
 
     public bool Combattimento()
     {
@@ -192,7 +193,6 @@ public class Player
 
         }
     }
-
     public void FunzioneAttack()
     {
 
@@ -259,7 +259,6 @@ public class Player
             return;
         }
     }
-
     public void ColpiscoIlNemico()
     {
 
@@ -283,6 +282,8 @@ public class Player
         Debug.Log("Il nemico ti ha preso infliggendoti " + enemy.GetAttack() + "ora la tua vita è " + vita);
     }
 
+
+
     public void AcquistoPuntiEsperienza()
     {
         Debug.Log("complimenti hai guadagnato " + enemy.GetExpValue());
@@ -291,7 +292,6 @@ public class Player
         Debug.Log("Hai Ucciso il nemico! Ora vai avanti!");
         enemy = null;
     }
-
     public void IncrementaLivello()
     {
         if (experience > 100)
@@ -305,6 +305,8 @@ public class Player
         }
 
     }
+
+
 
     public bool CheckMorte()
     {
@@ -341,30 +343,25 @@ public class Player
     }
 
 
+
     public int GetVita()
     {
         return vita;
     }
-
     public int GetAttack()
     {
         return attack;
     }
-
     public int GetAgility()
     {
         return agility;
     }
-
     public int GetExperience()
     {
         return experience;
     }
 
    
-
-
-
 }
 /* ESERCIZIO 3 public class Player
 {

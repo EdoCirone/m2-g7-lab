@@ -10,3 +10,8 @@ public enum TIPODISTANZA
     STANZAVUOTA
 }
 
+public enum STANZASPECIALIE
+{
+    STANZADELBOSS,
+
+}
