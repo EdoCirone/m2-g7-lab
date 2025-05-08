@@ -472,7 +472,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playername: 
   action: 0
-  movimento: 1
+  movimento: 0
+  azioniinventario: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -6,9 +6,13 @@ using UnityEngine;
 
 public class Rooms
 {
+    public List <TIPODISTANZA> mappa; 
     private TIPODISTANZA tipo;
+
+    public Inventario inventraio;
     public Player player;
     //public Enemy enemy;
+
 List<TIPODISTANZA> mappa = new List<TIPODISTANZA>();
     public void CreoStanza(string nome, int posizione)
     {
@@ -16,6 +20,7 @@ List<TIPODISTANZA> mappa = new List<TIPODISTANZA>();
         mappa.Add(nuovastanza);
         AssegnoTipoStanza();
         Debug.log ( "è stata aggiunta una nuova stanza: " + nome + posizione);
+
     }
 
     private void AssegnoTipoStanza()
@@ -98,4 +103,18 @@ List<TIPODISTANZA> mappa = new List<TIPODISTANZA>();
         return traps;
     }
 
+    private Tesoro CreoTesoro()
+    {
+        {
+
+            Tesoro tesoro = new Tesoro();
+
+            tesoro.SetTesoro();
+
+            return tesoro;
+
+        }
+    }
+
 }
+
