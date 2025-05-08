@@ -6,15 +6,19 @@ using UnityEngine;
 
 public class Rooms
 {
+    public List <TIPODISTANZA> mappa; 
     private TIPODISTANZA tipo;
 
     public Inventario inventraio;
     public Player player;
     //public Enemy enemy;
 
+
     public void CreoStanza()
     {
+
         AssegnoTipoStanza();
+
     }
 
     private void AssegnoTipoStanza()

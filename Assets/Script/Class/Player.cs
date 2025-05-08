@@ -106,8 +106,9 @@ public class Player
             }
             else
             {
+
                 Debug.Log("Non hai pozioni di cura");
-                azioneinventario = AZIONIINVENTARIO.NULLA;
+
             }
               
 

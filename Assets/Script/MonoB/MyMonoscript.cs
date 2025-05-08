@@ -47,6 +47,7 @@ public class MyMonoscript : MonoBehaviour
     {
         player.movimentoesposto = movimento;
         player.action = action;
+        room.nomestanza = nomestanza;
 
         player.GetMovimento();
 
