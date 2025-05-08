@@ -95,10 +95,12 @@ public class Player
             {
                 //Debug.Log("oh no,Non hai schivato la trappola");
                 DannoTrappola();
+                traps = null;
             }
             else
             {
                 Debug.Log("Complimenti!!! Hai schivato la trappola!");
+                traps = null;
             }
 
 
@@ -106,7 +108,7 @@ public class Player
 
         }
 
-        traps = null;
+ 
         //Debug.Log("Nessuna trappola da affrontare.");
          return false;
     }
