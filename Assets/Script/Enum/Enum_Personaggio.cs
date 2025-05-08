@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ACTION
+public enum AZIONICOMBATTIMENTO
 {
     FERMO,
     ATTACCA,
@@ -10,8 +10,18 @@ public enum ACTION
     FUGGI,
 }
 
-public enum MOVIMENTO
+public enum AZIONIMOVIMENTO
 {
     AVANTI,
-    STAI
+    STAI,
+}
+
+public enum AZIONIINVENTARIO
+{
+    NULLA,
+    PRENDOPOZIONECURA,
+    PRENDOPOZIONEANTIDOTO,
+    PRENDOPOZIONEANTIBRUCIATURA,
+    PRENDOPOZIONEANTIGELO,
+    PRENDOPOZIOCONCENTRAZIONE
 }

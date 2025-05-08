@@ -20,14 +20,20 @@ public class Player
 
     private DEBUF debufplayer;
 
-    public ACTION action;
-    private MOVIMENTO movimento;
-    public MOVIMENTO movimentoesposto;
-    MOVIMENTO movimentoprecedente = MOVIMENTO.STAI;
+    public AZIONICOMBATTIMENTO action;
+    public AZIONIINVENTARIO azioneinventario;
+    private AZIONIMOVIMENTO movimento;
+    
+    public AZIONIMOVIMENTO movimentoesposto;
+    AZIONIMOVIMENTO movimentoprecedente =  AZIONIMOVIMENTO.STAI;
+
+    AZIONIINVENTARIO azioneinventarioprecedente = AZIONIINVENTARIO.NULLA;
 
     public Enemy enemy;
     public Rooms rooms;
     public Traps traps;
+    public Tesoro tesoro;
+    public Inventario inventario;
 
 
 
@@ -37,7 +43,7 @@ public class Player
     {
         //creo un confronto per capire se si è mosso, mettendo a confronto il dato stai con la variabile movimento
 
-        if (movimento != movimentoprecedente && movimento != MOVIMENTO.STAI)
+        if (movimento != movimentoprecedente && movimento != AZIONIMOVIMENTO.STAI)
         {
             movimentoprecedente = movimento;
             return true;
@@ -49,13 +55,13 @@ public class Player
         }
     }
 
-    public MOVIMENTO GetMovimento()
+    public AZIONIMOVIMENTO GetMovimento()
     {
         if (traps != null)
         {
             if (enemy != null && !enemy.morto)
             {
-                movimento = MOVIMENTO.STAI;
+                movimento = AZIONIMOVIMENTO.STAI;
 
             }
             else
@@ -64,7 +70,7 @@ public class Player
 
             }
 
-            movimento = MOVIMENTO.STAI;
+            movimento = AZIONIMOVIMENTO.STAI;
         }
         else
         {
@@ -75,8 +81,39 @@ public class Player
             
     }
 
+    public bool HoPresoLaPozione()
+    {
+
+        if (azioneinventario != azioneinventarioprecedente && azioneinventario != AZIONIINVENTARIO.NULLA)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     public void PrendoPozione()
     {
+        HoPresoLaPozione();
+
+        if (azioneinventario == AZIONIINVENTARIO.PRENDOPOZIONECURA)
+        {
+            if (inventario.HoLaPozione() == true)
+            {
+                vita += vita;
+                Debug.Log("Hai preso una pozione ora la tua vita è " + vita);
+               
+            }
+            else
+            {
+                Debug.Log("Non hai pozioni di cura");
+                azioneinventario = AZIONIINVENTARIO.NULLA;
+            }
+              
+
+            Debug.Log("Non Hai Pozioni");
+        }
+
 
     }
 
@@ -122,10 +159,10 @@ public class Player
                 AcquistoPuntiEsperienza();
                 enemy = null;
 
-                if (action != ACTION.FERMO)
+                if (action != AZIONICOMBATTIMENTO.FERMO)
                 {
                     Debug.Log("Sei fuori dalla modalità combattimento!");
-                    action = ACTION.FERMO;
+                    action = AZIONICOMBATTIMENTO.FERMO;
                     enemy = null;
                 }
 
@@ -147,7 +184,7 @@ public class Player
         {
 
             //player.action = action;
-            if (movimento != MOVIMENTO.STAI)
+            if (movimento != AZIONIMOVIMENTO.STAI)
             {
                 Debug.Log("Non puoi muoverti finchè c'è un nemico");
                 // movimento = MOVIMENTO.STAI;
@@ -166,12 +203,12 @@ public class Player
         if (enemy.morto == false)
         {
 
-            ACTION azione = action;
+            AZIONICOMBATTIMENTO azione = action;
 
 
             switch (azione)
             {
-                case (ACTION.ATTACCA):
+                case (AZIONICOMBATTIMENTO.ATTACCA):
                     int schivata = enemy.schivata + Random.Range(0, 10);
                     int newprecisione = precisione + Random.Range(1, 10);
                     if (schivata < newprecisione)
@@ -188,12 +225,12 @@ public class Player
                         Debug.Log("Hai Lisciato il Nemico!");
                         AttaccoNemico();
                     }
-                    action = ACTION.FERMO;
+                    action = AZIONICOMBATTIMENTO.FERMO;
 
                     break;
 
 
-                case (ACTION.FUGGI):
+                case (AZIONICOMBATTIMENTO.FUGGI):
 
                     if (agility >= enemy.agility)
                     {
@@ -205,12 +242,12 @@ public class Player
                         Debug.Log("non sei scappato");
                         AttaccoNemico();
                     }
-                    action = ACTION.FERMO;
+                    action = AZIONICOMBATTIMENTO.FERMO;
                     break;
 
 
                 default:
-                    action = ACTION.FERMO;
+                    action = AZIONICOMBATTIMENTO.FERMO;
                     enemy.morto = enemy.DeathCheck();
                     break;
 
@@ -222,7 +259,7 @@ public class Player
         {
 
             Debug.Log("sono morto");
-            action = ACTION.FERMO;
+            action = AZIONICOMBATTIMENTO.FERMO;
             return;
         }
     }

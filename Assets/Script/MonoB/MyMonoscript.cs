@@ -15,8 +15,9 @@ public class MyMonoscript : MonoBehaviour
     private Traps trappola;
 
 
-    public ACTION action;
-    public MOVIMENTO movimento;
+    public AZIONICOMBATTIMENTO action;
+    public AZIONIMOVIMENTO movimento;
+    public AZIONIINVENTARIO azioniinventario;
 
     // public Player player2;
 
@@ -44,14 +45,8 @@ public class MyMonoscript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
-
-
-
         player.movimentoesposto = movimento;
         player.action = action;
-
 
         player.GetMovimento();
 
@@ -61,16 +56,17 @@ public class MyMonoscript : MonoBehaviour
         {
 
 
-            //bool stanzaCreata = false;
             player.GetMovimento();
 
 
             if (player.SièMosso())
             {
+
                 room.CreoStanza();
-                //stanzaCreata = true;
+
             }
 
+            player.HoPresoLaPozione();
             player.AffrontoLaTrappola();
             player.Combattimento();
      
@@ -86,8 +82,9 @@ public class MyMonoscript : MonoBehaviour
 
         }
 
-        movimento = MOVIMENTO.STAI;
-        action = ACTION.FERMO;
+        azioniinventario = AZIONIINVENTARIO.NULLA;
+        movimento = AZIONIMOVIMENTO.STAI;
+        action = AZIONICOMBATTIMENTO.FERMO;
     }
 }
 

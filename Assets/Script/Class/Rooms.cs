@@ -7,6 +7,8 @@ using UnityEngine;
 public class Rooms
 {
     private TIPODISTANZA tipo;
+
+    public Inventario inventraio;
     public Player player;
     //public Enemy enemy;
 
@@ -93,6 +95,19 @@ public class Rooms
         //Debug.Log("Nuova trappola; ");
 
         return traps;
+    }
+
+    private Tesoro CreoTesoro()
+    {
+        {
+
+            Tesoro tesoro = new Tesoro();
+
+            tesoro.SetTesoro();
+
+            return tesoro;
+
+        }
     }
 
 }
