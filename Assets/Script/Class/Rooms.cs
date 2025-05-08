@@ -13,11 +13,13 @@ public class Rooms
     public Player player;
     //public Enemy enemy;
 
-
-    public void CreoStanza()
+List<TIPODISTANZA> mappa = new List<TIPODISTANZA>();
+    public void CreoStanza(string nome, int posizione)
     {
-
+        TIPODISTANZA nuovastanza = new TIPODISTANZA(nome, posizione);
+        mappa.Add(nuovastanza);
         AssegnoTipoStanza();
+        Debug.log ( "è stata aggiunta una nuova stanza: " + nome + posizione);
 
     }
 
@@ -115,3 +117,4 @@ public class Rooms
     }
 
 }
+
