@@ -2,13 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum OGGETTIINVENTARIO
+public enum TIPODIPOZIONI
 {
-    MONETE,
-    POZIONECURA,
-    POZIONEANTIDOTO,
-    POZIONEANTIBRUCIATURA,
-    POZIONEANTIGELO,
-    POZIONECONCENTRAZIONE
+    CURA,
+    ANTIDOTO,
+    ANTIGELO,
+    CONCENTRAZIONE,
+    POMATA
 }
 
+public enum TIPODIARMI
+{
+    ASCIA,
+    SPADA,
+    PUGNALE,
+    MARTELLO
+}

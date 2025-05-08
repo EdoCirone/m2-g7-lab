@@ -32,7 +32,7 @@ public class Player
     public Enemy enemy;
     public Rooms rooms;
     public Traps traps;
-    public Tesoro tesoro;
+    //public Tesoro tesoro;
     public Inventario inventario;
 
 
@@ -74,42 +74,32 @@ public class Player
     }
 
 
+    //public void PrendoPozione()
+    //{
 
-    public bool HoPresoLaPozione()
-    {
 
-        if (azioneinventario != azioneinventarioprecedente && azioneinventario != AZIONIINVENTARIO.NULLA)
-        {
-            return true;
-        }
+    //    if (azioneinventario == AZIONIINVENTARIO.PRENDOPOZIONECURA)
+    //    {
+    //        if (inventario.TrovaPozioniCura().Count != 0 )
+    //        {
 
-        return false;
-    }
-    public void PrendoPozione()
-    {
-
-        if (azioneinventario == AZIONIINVENTARIO.PRENDOPOZIONECURA)
-        {
-            if (inventario.HoLaPozione() == true)
-            {
-
-                vita += vita;
-                Debug.Log("Hai preso una pozione ora la tua vita è " + vita);
+    //            vita += vita;
+    //            Debug.Log("Hai preso una pozione ora la tua vita è " + vita);
                
-            }
+    //        }
             
-            else
-            {
+    //        else
+    //        {
 
-                Debug.Log("Non hai pozioni di cura");
+    //            Debug.Log("Non hai pozioni di cura");
 
-            }
+    //        }
               
+    //        Inventario.HoLaPozione();
+    //    }
 
-        }
 
-
-    }
+    //}
 
 
 

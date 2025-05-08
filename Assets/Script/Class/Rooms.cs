@@ -101,18 +101,18 @@ public class Rooms
         return traps;
     }
 
-    private Tesoro CreoTesoro()
-    {
-        {
+    //private Tesoro CreoTesoro()
+    //{
+    //    {
 
-            Tesoro tesoro = new Tesoro();
+    //        Tesoro tesoro = new Tesoro();
 
-            tesoro.SetTesoro();
+    //        tesoro.SetTesoro();
 
-            return tesoro;
+    //        return tesoro;
 
-        }
-    }
+    //    }
+    //}
 
     public TIPODISTANZA GetTipo()
     {

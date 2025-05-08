@@ -5,23 +5,44 @@ using UnityEngine;
 public class Inventario
 {
 
-   // public OGGETTIINVENTARIO pozionecura = OGGETTIINVENTARIO.POZIONECURA;
-    
-    public OGGETTIINVENTARIO[] inventario ;
-    public Rooms room = new Rooms();
-    public int numeropozionecura = 0;
+    public List<Pozioni> inventarioPozioni = new List<Pozioni>();
+    public List<Armi> inventarioArmi = new List<Armi>();
 
-    public Player player;
+    Pozioni pozione = new Pozioni();
 
-    public bool HoLaPozione()
+    public void PrendiPozione(Pozioni pozione)
     {
-        if ( numeropozionecura != 0)
-        {
-            return true;
-        }
-
-        return false;
-
+        inventarioPozioni.Add(pozione);
     }
+
+    //public bool TrovaPozioniCura( out List<Pozioni> pozionisenzaCura)
+    //{
+    //    var pozioniCura = new List<Pozioni>();
+
+    //    foreach (Pozioni p in inventarioPozioni)
+    //    {
+    //        if (p.tipo == TIPODIPOZIONI.CURA)
+    //        {
+
+    //            pozioniCura.Add(pozione);
+
+    //        }
+
+    //    }
+
+    //    if (pozioniCura.Count != 0)
+    //    {
+           
+    //    }
+    //    else
+    //    {
+    //        return false;
+    //    }
+
+       
+
+       
+   // }
+
 
 }

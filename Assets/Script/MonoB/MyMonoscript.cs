@@ -72,7 +72,6 @@ public class MyMonoscript : MonoBehaviour
 
             }
 
-            player.PrendoPozione();
             player.AffrontoLaTrappola();
             player.Combattimento();
 
