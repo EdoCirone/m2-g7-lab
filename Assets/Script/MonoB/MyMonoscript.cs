@@ -12,6 +12,7 @@ public class MyMonoscript : MonoBehaviour
     public Player player;
     public string playername;
     private Rooms room;
+    private Traps trappola;
 
 
     public ACTION action;
@@ -35,6 +36,7 @@ public class MyMonoscript : MonoBehaviour
         player.GetMovimento();
         room = new Rooms();
         room.player = player;
+        trappola = new Traps();
 
 
     }
@@ -69,8 +71,9 @@ public class MyMonoscript : MonoBehaviour
                 //stanzaCreata = true;
             }
 
+            player.AffrontoLaTrappola();
             player.Combattimento();
-
+     
         }
         else
         {

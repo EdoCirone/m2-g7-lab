@@ -35,7 +35,7 @@ public class Enemy
     {
 
             vita -= player.GetAttack();
-            Debug.Log("Ho subito " + player.GetAttack() + " ora la mia vita è " + vita);
+            Debug.Log("il nemico ha subito " + player.GetAttack() + " ora la sua vita è " + vita);
 
         return DeathCheck();
     }
@@ -43,7 +43,7 @@ public class Enemy
     private TIPODINEMICO TypeEnemy()
     {
       
-        TIPODINEMICO tipo = (TIPODINEMICO)Random.Range(0, 0);
+        TIPODINEMICO tipo = (TIPODINEMICO)Random.Range(0, 2);
 
         switch (tipo)
         {
@@ -76,14 +76,11 @@ public class Enemy
 
         }
 
-        Debug.Log(tipo + " la mia vita è " + vita + " la mia precisione è " + precisione + " il mio attacco è " + attack);
+        //Debug.Log(tipo + " la mia vita è " + vita + " la mia precisione è " + precisione + " il mio attacco è " + attack);
         return tipo;
     }
 
-    public void AttaccoNemico(Player player)
-    {
-        Debug.Log("il nemico si prepara ad attaccare");
-    }
+
 
 
     public bool DeathCheck()
@@ -99,13 +96,16 @@ public class Enemy
         }
         else
         {
-            Debug.Log("sono morto");
+            Debug.Log("Il NEMICO E'MORTO!!!");
             morto = true;
         }
         return morto;
     }
 
-
+    public int GetAttack()
+    {
+        return attack;
+    }
     public int GetExpValue()
     {
         return expvalue;

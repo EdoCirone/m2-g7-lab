@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEditor.Media;
 using UnityEngine;
 
@@ -24,6 +25,7 @@ public class Rooms
 
                 Enemy enemy = CreoNemico();
                 player.enemy = enemy;
+                player.traps = null;
 
                 TIPODINEMICO tiponemico = enemy.tipo;
 
@@ -34,11 +36,11 @@ public class Rooms
 
             case TIPODISTANZA.STANZATRAPPOLA:
 
+                Traps traps = CreoTrappola();
+                player.traps = traps;
                 Debug.Log("hai trovato una trappola");
-                int vita = player.GetVita() ;
-                vita--;
                 player.GetMovimento();
-
+                player.enemy = null;
                 break;
 
 
@@ -46,6 +48,8 @@ public class Rooms
 
                 Debug.Log("hai trovato una stanza vuota");
                 player.GetMovimento();
+                player.enemy = null;
+                player.traps = null;
 
                 break;
 
@@ -54,6 +58,8 @@ public class Rooms
 
                 Debug.Log("hai trovato un tesoro");
                 player.GetMovimento();
+                player.enemy = null;
+                player.traps = null;
 
                 break;
 
@@ -67,7 +73,7 @@ public class Rooms
 
         Enemy enemy = new Enemy();
 
-        Debug.Log(" Creo un nuovo nemico...");
+        //Debug.Log(" Creo un nuovo nemico...");
 
         enemy.SetEnemy();
 
@@ -75,4 +81,18 @@ public class Rooms
 
         return enemy;
     }
+
+    private Traps CreoTrappola()
+    {
+        Traps traps = new Traps();
+
+        //Debug.Log("Creo una nuova trappola");
+
+        traps.SetTrap();
+
+        //Debug.Log("Nuova trappola; ");
+
+        return traps;
+    }
+
 }
