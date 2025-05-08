@@ -12,33 +12,40 @@ public class MyMonoscript : MonoBehaviour
     public Player player;
     public string playername;
     private Rooms room;
-   
+
 
     public ACTION action;
     public MOVIMENTO movimento;
 
     // public Player player2;
 
-    
+
     // Start is called before the first frame update
     void Start()
     {
+
+        Debug.Log("BENVENUTI IN MyFirstAdventure!!!");
+        Debug.Log("Un GDR testuale creato per fissare e applicare i concetti che gli autori stanno imparando nel corso di Epicode");
+        Debug.Log("grazie al prezioso contributo dei docenti Jacopo Ziuliani e Luca Villanini. SI GIOCA TRAMITE INSPECTOR. UN GIOCO PIENO DI AVVENTURA,MISTERO E PARACULAGINE!!!");
+        Debug.Log("sebbene il disordine degli script possa far sembrare che il gioco sia stato scritto da un chiwawa con tre zampe vi assicuriamo che siamo esseri umani");
+
+
         player = new Player();
         player.Name = playername;
         player.GetMovimento();
         room = new Rooms();
         room.player = player;
 
- 
+
     }
 
     // Update is called once per frame
     void Update()
     {
-     
-    
 
- 
+
+
+
 
         player.movimentoesposto = movimento;
         player.action = action;
@@ -62,7 +69,7 @@ public class MyMonoscript : MonoBehaviour
                 //stanzaCreata = true;
             }
 
-            player.Combattimento();  
+            player.Combattimento();
 
         }
         else
