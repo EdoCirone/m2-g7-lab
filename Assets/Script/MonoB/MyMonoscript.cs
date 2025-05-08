@@ -40,23 +40,25 @@ public class MyMonoscript : MonoBehaviour
 
  
 
-    player.movimentoesposto = movimento; // Sincronizza con Inspector
-        movimento = MOVIMENTO.STAI;
-        player.action = action;       // Idem per azione
+        player.movimentoesposto = movimento;
+        player.action = action;
 
+
+        player.GetMovimento();
 
 
         if (!player.vittoria() && !player.sconfitta())
 
         {
 
-            
+
             //bool stanzaCreata = false;
+            player.GetMovimento();
+
 
             if (player.SièMosso())
             {
                 room.CreoStanza();
-                player.GetMovimento();
                 //stanzaCreata = true;
             }
 
@@ -74,7 +76,8 @@ public class MyMonoscript : MonoBehaviour
 
         }
 
-
+        movimento = MOVIMENTO.STAI;
+        action = ACTION.FERMO;
     }
 }
 

@@ -52,14 +52,15 @@ public class Player
             if (enemy != null && enemy.morto)
             {
                 AcquistoPuntiEsperienza();
+                enemy = null;
 
                 if (action != ACTION.FERMO)
                 {
                     Debug.Log("Sei fuori dalla modalità combattimento!");
                     action = ACTION.FERMO;
+                    enemy = null;
                 }
 
-                enemy = null;
 
 
             }
@@ -152,6 +153,7 @@ public class Player
         {
 
             Debug.Log("sono morto");
+            action = ACTION.FERMO;
             return;
         }
     }
@@ -170,12 +172,12 @@ public class Player
         if (enemy != null && !enemy.morto)
         {
             movimento = MOVIMENTO.STAI;
-            Debug.Log("il nemico non c'è o è morto");
+
         }
         else
         {
             movimento = movimentoesposto;
-            Debug.Log("ecco il nemico");
+        
         }
 
         return movimento;

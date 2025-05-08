@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Media;
 using UnityEngine;
 
 public class Rooms
@@ -34,6 +35,8 @@ public class Rooms
             case TIPODISTANZA.STANZATRAPPOLA:
 
                 Debug.Log("hai trovato una trappola");
+                int vita = player.GetVita() ;
+                vita--;
                 player.GetMovimento();
 
                 break;
